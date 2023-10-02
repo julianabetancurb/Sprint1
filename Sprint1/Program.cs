@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Sprint1.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 namespace Sprint1
 {
     public class Program
@@ -10,6 +13,8 @@ namespace Sprint1
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<Sprint1Context>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Sprint1Context") ?? throw new InvalidOperationException("Connection string 'Sprint1Context' not found.")));
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Sprint1Context>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -30,6 +35,8 @@ namespace Sprint1
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.MapRazorPages();
 
             app.MapControllerRoute(
                 name: "default",

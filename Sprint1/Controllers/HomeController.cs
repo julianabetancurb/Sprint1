@@ -18,6 +18,7 @@ namespace Sprint1.Controllers
             return View();
         }
 
+
         public IActionResult Privacy()
         {
             return View();
