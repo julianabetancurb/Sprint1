@@ -20,3 +20,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+.centered-h1 {
+    text-align: center; /* Centrado horizontal */
+    line-height: 200px; /* Centrado vertical (ajusta según tu necesidad) */
+    height: 200px; /* Asegura que el contenedor tenga una altura fija para el centrado vertical */
+}
